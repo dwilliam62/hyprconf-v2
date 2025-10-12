@@ -19,7 +19,7 @@ display_text() {
     gum style \
         --border rounded \
         --align center \
-        --width 60 \
+        --width 100 \
         --margin "1" \
         --padding "1" \
 '
@@ -185,26 +185,26 @@ sleep 1
 
 ####################################################################
 
-#_____ if OpenBangla Keyboard is installed
-# keyboard_path="/usr/share/openbangla-keyboard"
-#
-# if [[ -d "$keyboard_path" ]]; then
-#     msg act "Setting up OpenBangla-Keyboard..."
-#
-#     # Add fcitx5 environment variables to /etc/environment if not already present
-#     if ! grep -q "GTK_IM_MODULE=fcitx" /etc/environment; then
-#         printf "\nGTK_IM_MODULE=fcitx\n" | sudo tee -a /etc/environment 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log") &> /dev/null
-#     fi
-#
-#     if ! grep -q "QT_IM_MODULE=fcitx" /etc/environment; then
-#         printf "QT_IM_MODULE=fcitx\n" | sudo tee -a /etc/environment 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log") &> /dev/null
-#     fi
-#
-#     if ! grep -q "XMODIFIERS=@im=fcitx" /etc/environment; then
-#         printf "XMODIFIERS=@im=fcitx\n" | sudo tee -a /etc/environment 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log") &> /dev/null
-#     fi
-#
-# fi
+_____ if OpenBangla Keyboard is installed
+keyboard_path="/usr/share/openbangla-keyboard"
+
+if [[ -d "$keyboard_path" ]]; then
+    msg act "Setting up OpenBangla-Keyboard..."
+
+    # Add fcitx5 environment variables to /etc/environment if not already present
+    if ! grep -q "GTK_IM_MODULE=fcitx" /etc/environment; then
+        printf "\nGTK_IM_MODULE=fcitx\n" | sudo tee -a /etc/environment 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log") &> /dev/null
+    fi
+
+    if ! grep -q "QT_IM_MODULE=fcitx" /etc/environment; then
+        printf "QT_IM_MODULE=fcitx\n" | sudo tee -a /etc/environment 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log") &> /dev/null
+    fi
+
+    if ! grep -q "XMODIFIERS=@im=fcitx" /etc/environment; then
+        printf "XMODIFIERS=@im=fcitx\n" | sudo tee -a /etc/environment 2>&1 | tee -a >(sed 's/\x1B\[[0-9;]*[JKmsu]//g' >> "$log") &> /dev/null
+    fi
+
+fi
 
 ####################################################################
 
@@ -314,8 +314,12 @@ kill -SIGUSR1 $(pidof kitty)
 waybarTheme="$HOME/.config/waybar/colors/Catppuccin.css"
 ln -sf "$waybarTheme" "$HOME/.config/waybar/style/theme.css"
 
+# wlogout themes
+wlogoutTheme="$HOME/.config/wlogout/colors/Catppuccin.css"
+ln -sf "$wlogoutTheme" "$HOME/.config/wlogout/colors.css"
+
 # set swaync colors
-swayncTheme="$HOME/.config/swaync/colors/${theme}.css"
+swayncTheme="$HOME/.config/swaync/colors/Catppuccin.css"
 ln -sf "$swayncTheme" "$HOME/.config/swaync/colors.css"
 
 # Setting VS Code extension based on theme selection

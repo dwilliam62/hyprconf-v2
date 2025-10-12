@@ -15,7 +15,7 @@
     // power menu ( universal )
     "custom/power_btn": {
         "format": "",
-        "tooltip": false
+        "tooltip": false,
         "on-click": "wlogout -b 6 --layout ~/.config/wlogout/layout --css ~/.config/wlogout/style.css",
     },
 
